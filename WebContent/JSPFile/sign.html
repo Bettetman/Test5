@@ -1,0 +1,274 @@
+<<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>注册界面</title>
+	<style type="text/css">
+
+		.header{
+			width: 100%;
+			height: 15%;
+			position: relative;
+			/*border:1px solid red;*/
+		}
+		.header #tubiao{
+			position: absolute;
+			margin-left:15%;
+			margin-top: 1%;
+		}
+		.hidecontent{
+			width: 500px;
+			height: 300px;
+			position: absolute;
+			/*display: none;*/
+			/*background-color: yellow;*/
+			margin-left:15%;
+			margin-top: 15%;
+
+		}
+		.hidecontent .xiexibutton{
+			width: 80px;
+			height: 40px;
+			cursor: pointer;
+		}
+		.hidecontent #agreelogin{
+		    background-color: red;
+		    border:1px solid red;
+		    color: #ffffff;
+     		opacity: 0.5;
+
+		}
+		.hidecontent #quxiao{
+			background-color: #e3e4e5;
+			border: 1px solid #e3e4e5;
+			color: #999999;
+		}
+		.content{
+			width: 700px;
+			height: 600px;
+			position: relative;
+			/*border: 1px solid red;*/
+			margin-left:25%;
+			background-color: #f5f5f5;
+
+		}
+		.content .table1{
+			/*border: 1px solid red;*/
+			position: absolute;
+			margin-left: 25%;
+			margin-top: 10%;
+			display: none;
+
+
+		}
+		
+		.text1{
+			font-size: 30px;
+			height: 70px;
+			/*border:1px solid red;*/
+			width: 150px;
+		}
+		.text1 span{color:Red;font-size:15px}
+		.footer{
+			width: 100%;
+			height: 5%;
+			/*border:1px solid red;*/
+			font-size: 12px;
+			font-style: "微软雅黑";
+			color: black;
+
+		}
+
+		/*js需要的css*/
+		.input_focus{
+			background-color: gray;
+			opacity: 0.5;
+
+		}
+
+	</style>
+</head>
+<body>
+	<div class="header">
+			<img src="image/tianmao.png" id="tubiao">
+	</div>
+	<div class="content">
+		<div class="hidecontent" id="content1">
+			<center>
+		  <span>协议:</span>
+		  <br>
+		  <p>
+			注册该公司，你必须同意本可的协议，否则无法完成注册..
+		  </p>
+		  <p>
+            你必须每天在本公司花钱
+		  </p>
+
+		  <button class="xiexibutton" id="agreelogin" disabled="true">同意注册</button>
+		  <button class="xiexibutton" id="quxiao">取消</button>
+		  </center>
+
+
+
+
+		</div>
+		<form  id="commentForm" name="form1" method="post" action="signHandle.jsp">
+    		<table  border="0"  align="center" class="table1" id="content2">
+    			 <tr>
+    			 	<td class="tital">用户名：</td>
+    			 	<td class="text1"><input type="text" name="name" id="name">
+    			 		<span></span>
+    			 	</td>
+    			 </tr>
+     			 <tr> 
+        			<td class="tital">账号：</td>
+        			<td class="text1"><input type="text" name="account" id="account">
+        			<span></span>
+        			</td>
+      			</tr>
+				<tr> 
+			        <td class="tital">密码：</td>
+			        <td class="text1"><input type="password" name="password" id="password">
+			        	<span></span>
+			        </td>
+				</tr>
+				<tr> 
+			        <td class="tital">确认密码：</td>
+			        <td class="text1"><input type="password" name="confirm_password" id="confirm_password">
+			        	<span></span>
+			        </td>
+				</tr>
+				<tr> 
+        			<td class="tital">邮箱地址：</td>
+        			<td class="text1"><input type="text" name="email" id="email">
+						<span></span>
+        			</td>
+      			</tr>
+      			<tr>
+					<td class="tital">个人描述：</td>
+					<td height="19" class="text1">
+					<textarea id="personaldes" name="personaldes" rows="3" cols="22">
+				
+					</textarea>
+					<span></span>
+
+					</td>
+      			</tr>
+      			<!-- 以下是提交、取消按钮 -->
+      			<tr></tr>
+      			<tr > 
+        			<td colspan="2" align="center" > 
+          				<input type="submit" name="Submit" value="提交">
+          				<input type="reset" name="Reset" value="取消">
+        			</td>
+      			</tr>
+    		</table>
+  		</form>
+	</div>
+	<div class="footer">
+	<center><span id="banben">copyright 1.10 writer Mfp time: 180429</span></center>
+	</div>
+	
+
+
+	 <script src="jsneed/jquery-1.12.4.min.js"></script>
+ 	<script src="jsneed/jquery-ui-1.12.1.min.js"></script>
+ 	
+ 	<script src="jsneed/jquery.validate.js"></script>
+ 	<script src="jsneed/jquery.validate.messages_cn.js"></script>
+	<script type="text/javascript">
+		$("#commentForm [type=text]").focus(function(){
+    		$(this).addClass("input_focus");
+    		// $(this).css("border","1px solid red");
+    	});
+   		 $("#commentForm [type=text]").blur(function(){
+    		$(this).removeClass("input_focus");
+   	 	});
+   		$("#commentForm [type=password]").focus(function(){
+    		$(this).addClass("input_focus");
+    	});
+   		 $("#commentForm [type=password]").blur(function(){
+    		$(this).removeClass("input_focus");
+   	 	});
+   		 // 遮罩层加入
+   		 $(document).ready(function(){
+   		 	var func = function(){
+   		 		$("#agreelogin").attr("disabled",false);
+   		 		$("#agreelogin").css("opacity",1);
+   		 	}
+            setTimeout(func,5000);//5秒钟后才可以点击登陆按钮
+   		 });
+   		 $("#agreelogin").click(function(){
+   		 		$("#content2").show();
+   		 		$("#content1").hide();
+   		 });
+   		  $("#quxiao").click(function(){
+   		 		$("#content2").show();
+   		 		$("#content1").hide();
+   		 });
+
+	</script>
+	<script type="text/javascript">
+	$().ready(function() {
+// 在键盘按下并释放及提交后验证提交表单
+  $("#commentForm").validate({
+  	errorPlacement: function(error, element) {
+            error.appendTo(element.siblings("span"));
+     },
+
+    rules: {
+      account:{ required:true,
+      	  minlength: 5,
+
+      },
+      name: {
+        required: true,
+        minlength: 2
+      },
+      password: {
+        required: true,
+        minlength: 5
+      },
+      confirm_password: {
+        required: true,
+        minlength: 5,
+        equalTo: "#password"
+      },
+      email: {
+        required: true,
+        email: true
+      },
+      personaldes:{
+      	required:true
+      }
+    },
+    messages: {
+      account:{
+      	required:"必填",
+      },
+      name: {
+        required: "请输入用户名",
+        minlength: "用户名必需由两个字母组成"
+      },
+      password: {
+        required: "请输入密码",
+        minlength: "密码长度不能小于 5 个字母"
+      },
+      confirm_password: {
+        required: "请输入密码",
+        minlength: "密码长度不能小于 5 个字母",
+        equalTo: "两次密码输入不一致"
+      },
+      email: "请输入一个正确的邮箱",
+      personaldes: "请输入我们的声明",
+     
+     },
+    })
+});
+
+	</script>
+		
+
+	
+</body>
+</html>

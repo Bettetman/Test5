@@ -1,0 +1,182 @@
+<<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>登陆界面</title>
+	<style type="text/css">
+	.header{
+		/*border: 1px  solid red;*/
+		height: 70px;
+		width: :100%;
+		top: 0px;
+		margin-left: 30px;
+		position: relative;
+	}
+	.images{
+		position: absolute;
+		margin-top: 0px;
+		margin-left: 20%;
+	}
+	.middlepart{
+		/*border: 1px solid gray;*/
+		height: 500px;
+		width: :100%;
+		top: 0px;
+		margin-left: 0px;
+        position: relative;
+	}
+	.footer{
+		/*border: 1px solid blue;*/
+		height: 20px;
+		width: :100%;
+        top: 0px;
+		margin-left: 0px;
+	}
+	.middlepart .right{
+		position: absolute;
+		width: 350px;
+	   height: 250px;
+		background: green;
+		margin-top: 100px;
+		margin-left: 900px;
+
+	}
+	.middlepart .left img{
+		position: absolute;
+		height: 400px;
+		width: 700px;
+		background: yellow;
+		margin-top: 50px;
+		margin-left: 100px;
+		border: 1px solid red;
+	}
+
+     /*按钮的设置*/
+    #login{
+	width: 350px;
+	height: 250px;
+	background-color: #ddffff;
+	padding: 5px;
+   }
+   #login legend{
+	font-weight: bold;
+   }
+   .table2{
+   	/*border: 1px solid red;*/
+   	margin-top:50px;
+   }
+   .table2 .text1{
+   	  width: 100px;
+   	  height: 50px;
+   	  /*border: 1px solid  red;*/
+   }
+   .text1 span{color:Red;font-size:15px}
+   	/*js需要的css*/
+		.input_focus{
+			background-color: gray;
+			opacity: 0.5;
+
+		}
+	</style>
+ 
+
+<body>
+<div class="header">
+ <img class="images"src="zjxddljm\head.png">
+ 
+</div>
+<div class="middlepart">
+	<div class="left"> <img src="zjxddljm\left.png"></div>
+	<div class="right">
+		 
+		<div id="login">
+			<form id="frmV" method="get" action="loginHandle.jsp">
+				<legend>用户登录</legend>
+				<table  border="0"  align="center" class="table2" id="table2">
+					<tr>
+						<td class="tital">用户账号：</td>
+	    			 	<td class="text1"><input type="text" name="account" id="account" style="height: 28px;">
+	    			 	<span></span>
+	    			 	</td>
+					</tr>
+					<tr> 
+				        <td class="tital">密码：</td>
+				        <td class="text1"><input type="password" name="password" id="password"
+				        	style="height: 28px;">
+				        <span></span>
+				        </td>
+					 </tr>
+	      			 <tr> 
+	      				 <td><input type="submit" class="btn"  value="登录" /></td>
+	      				 <td><a href="login.html">注册</a><span>|</span><a href="#">忘记密码？</a>
+	        			<span></span>
+	        			</td>
+	      			 </tr>
+	      		</table>
+  			  </form>
+		</div> 
+	 
+	</div>
+
+
+</div>
+<div class="footer">
+ 	<span><center>copyright by frank 18/4/27/23:39</center>></span>
+</div>
+
+	<script src="jsneed/jquery-1.12.4.min.js"></script>
+ 	<script src="jsneed/jquery-ui-1.12.1.min.js"></script>
+ 	
+ 	<script src="jsneed/jquery.validate.js"></script>
+ 	<script src="jsneed/jquery.validate.messages_cn.js"></script>
+
+<script type="text/javascript">
+		$("#frmV [type=text]").focus(function(){
+    		$(this).addClass("input_focus");
+    		// $(this).css("border","1px solid red");
+    	});
+   		 $("#frmV [type=text]").blur(function(){
+    		$(this).removeClass("input_focus");
+   	 	});
+   		$("#frmV [type=password]").focus(function(){
+    		$(this).addClass("input_focus");
+    	});
+   		 $("#frmV [type=password]").blur(function(){
+    		$(this).removeClass("input_focus");
+   	 	});
+	$().ready(function() {
+// 在键盘按下并释放及提交后验证提交表单
+  $("#frmV").validate({
+  	errorPlacement: function(error, element) {
+            error.appendTo(element.siblings("span"));
+     },
+
+    rules: {
+      account:{ required:true,
+      	  minlength: 6,
+
+      },
+      password: {
+        required: true,
+        minlength: 5
+      },
+    },
+    messages: {
+      account:{
+      	required:"必填",
+      	minlength: "账号不能小于 6位"
+      },
+      password: {
+        required: "请输入密码",
+        minlength: "密码不能低于 6位"
+      },
+  
+     
+     },
+    })
+});
+
+	</script>
+
+</body>
+</html>
